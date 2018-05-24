@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+function adduser(str) {
+    if (str.length == 0) { 
+        document.getElementById("addresult").innerHTML = "sorry, empty string";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("addresult").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "add_contact.php?" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
+</head>
+
+
+<body>
+
+<h2>Test Form</h2>
+
+<p id="addresult"></p>
+
+<form>
+  <fieldset>
+    <legend>Create user:</legend>
+    Username:<br>
+    <input type="text" name="username" value="">
+    <br>
+    Password:<br>
+    <input type="text" name="password" value="">
+    <br><br>
+    <button onclick="adduser(this.value)">Submit</button> 
+ </fieldset>
+</form>
+
+</body>
+</html>
+
